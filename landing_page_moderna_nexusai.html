@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexusAI | Automatización Inteligente de Flujos de Trabajo</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        dark: {
+                            950: '#07090f',
+                            900: '#0b0f19',
+                            800: '#131a2a',
+                            700: '#1e293b'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-dark-950 text-slate-200 font-sans antialiased selection:bg-indigo-500 selection:text-white overflow-x-hidden">
+
+    <!-- ==========================================
+         BARRA DE NAVEGACIÓN FIJA
+    =========================================== -->
+    <header id="navbar" class="fixed top-0 inset-x-0 z-50 transition-all duration-300 bg-dark-950/80 backdrop-blur-md border-b border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-cyan-400 flex items-center justify-center shadow-lg shadow-indigo-500/30 group-hover:scale-105 transition-transform">
+                        <i class="fa-solid fa-bolt text-white text-lg"></i>
+                    </div>
+                    <span class="text-xl font-bold tracking-tight text-white">Nexus<span class="text-cyan-400">AI</span></span>
+                </a>
+
+                <!-- Enlaces Escritorio -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#caracteristicas" class="text-sm font-medium text-slate-300 hover:text-cyan-400 transition-colors">Características</a>
+                    <a href="#testimonios" class="text-sm font-medium text-slate-300 hover:text-cyan-400 transition-colors">Testimonios</a>
+                    <a href="#precios" class="text-sm font-medium text-slate-300 hover:text-cyan-400 transition-colors">Precios</a>
+                    <a href="#contacto" class="text-sm font-medium text-slate-300 hover:text-cyan-400 transition-colors">Contacto</a>
+                </nav>
+
+                <!-- Botones CTA Escritorio -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="#contacto" class="text-sm font-medium text-slate-300 hover:text-white transition-colors px-3 py-2">Iniciar Sesión</a>
+                    <a href="#precios" class="text-sm font-semibold text-white bg-gradient-to-r from-indigo-600 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 px-5 py-2.5 rounded-xl shadow-lg shadow-indigo-500/25 transition-all hover:scale-105">
+                        Empezar Gratis
+                    </a>
+                </div>
+
+                <!-- Botón Hamburguesa Móvil -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" type="button" aria-label="Abrir menú" class="p-3 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/70 focus:outline-none transition-colors">
+                        <i id="menu-icon" class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menú Desplegable Móvil -->
+        <div id="mobile-menu" class="hidden md:hidden bg-dark-900 border-b border-slate-800 px-4 pt-2 pb-6 space-y-2 shadow-2xl">
+            <a href="#caracteristicas" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors">Características</a>
+            <a href="#testimonios" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors">Testimonios</a>
+            <a href="#precios" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors">Precios</a>
+            <a href="#contacto" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors">Contacto</a>
+            <div class="pt-4 border-t border-slate-800 flex flex-col gap-3">
+                <a href="#precios" class="mobile-link w-full text-center font-semibold text-white bg-gradient-to-r from-indigo-600 to-cyan-500 py-3 rounded-xl shadow-lg">
+                    Comenzar Prueba Gratuita
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==========================================
+         SECCIÓN HERO
+    =========================================== -->
+    <section class="relative pt-32 pb-20 lg:pt-44 lg:pb-32 overflow-hidden">
+        <!-- Efectos de iluminación ambiental en el fondo -->
+        <div class="absolute top-20 left-1/2 -translate-x-1/2 w-[90vw] max-w-4xl h-96 bg-indigo-600/20 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute top-40 right-10 w-72 h-72 bg-cyan-500/15 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <!-- Insignia superior -->
+            <div class="reveal opacity-0 translate-y-6 transition-all duration-700 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900/90 border border-slate-700/80 text-cyan-400 text-xs sm:text-sm font-medium mb-8 shadow-inner">
+                <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+                <span>Nuevo: Motor Predictivo Nexus v3.0 disponible</span>
+            </div>
+
+            <!-- Título Principal -->
+            <h1 class="reveal opacity-0 translate-y-6 transition-all duration-700 delay-100 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white max-w-4xl mx-auto leading-[1.1]">
+                Escala tu negocio con <br class="hidden sm:inline" />
+                <span class="bg-gradient-to-r from-indigo-400 via-cyan-400 to-emerald-300 bg-clip-text text-transparent">
+                    inteligencia automatizada
+                </span>
+            </h1>
+
+            <!-- Subtítulo -->
+            <p class="reveal opacity-0 translate-y-6 transition-all duration-700 delay-200 mt-6 text-base sm:text-lg md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
+                Conecta tus herramientas favoritas, elimina tareas repetitivas y toma decisiones respaldadas por datos en tiempo real desde un único espacio de trabajo unificado.
+            </p>
+
+            <!-- Botones de Llamado a la Acción (CTA) -->
+            <div class="reveal opacity-0 translate-y-6 transition-all duration-700 delay-300 mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#precios" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-indigo-600 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white font-semibold text-base shadow-xl shadow-indigo-500/25 transition-all hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                    <span>Comenzar Gratis 14 Días</span>
+                    <i class="fa-solid fa-arrow-right text-sm"></i>
+                </a>
+                <a href="#caracteristicas" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700 text-slate-200 font-semibold text-base transition-all flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-circle-play text-cyan-400"></i>
+                    <span>Explorar Plataforma</span>
+                </a>
+            </div>
+
+            <!-- Vista previa visual / Mockup interactivo del Dashboard -->
+            <div class="reveal opacity-0 translate-y-8 transition-all duration-1000 delay-300 mt-16 max-w-5xl mx-auto">
+                <div class="rounded-3xl bg-gradient-to-b from-slate-800/80 to-slate-900/90 p-2 sm:p-3 border border-slate-700/70 shadow-2xl shadow-cyan-950/40">
+                    <div class="rounded-2xl bg-dark-950 border border-slate-800 overflow-hidden">
+                        <!-- Barra superior ventana -->
+                        <div class="flex items-center justify-between px-4 py-3 bg-dark-900 border-b border-slate-800">
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-full bg-rose-500/80"></span>
+                                <span class="w-3 h-3 rounded-full bg-amber-500/80"></span>
+                                <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
+                            </div>
+                            <div class="text-xs text-slate-500 font-mono bg-dark-950 px-3 py-1 rounded-lg border border-slate-800">
+                                app.nexusai.io/dashboard
+                            </div>
+                            <div class="w-12"></div>
+                        </div>
+                        <!-- Contenido simulado del Dashboard -->
+                        <div class="p-6 sm:p-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+                            <div class="p-5 rounded-2xl bg-dark-900/90 border border-slate-800/80">
+                                <div class="flex items-center justify-between text-slate-400 text-sm mb-2">
+                                    <span>Flujos Activos</span>
+                                    <i class="fa-solid fa-diagram-project text-indigo-400"></i>
+                                </div>
+                                <div class="text-3xl font-bold text-white">1,284</div>
+                                <div class="mt-2 text-xs text-emerald-400 flex items-center gap-1">
+                                    <i class="fa-solid fa-arrow-trend-up"></i> +24.8% este mes
+                                </div>
+                            </div>
+                            <div class="p-5 rounded-2xl bg-dark-900/90 border border-slate-800/80">
+                                <div class="flex items-center justify-between text-slate-400 text-sm mb-2">
+                                    <span>Horas Ahorradas</span>
+                                    <i class="fa-solid fa-clock text-cyan-400"></i>
+                                </div>
+                                <div class="text-3xl font-bold text-white">4,920 h</div>
+                                <div class="mt-2 text-xs text-emerald-400 flex items-center gap-1">
+                                    <i class="fa-solid fa-arrow-trend-up"></i> Equivalente a $145k
+                                </div>
+                            </div>
+                            <div class="p-5 rounded-2xl bg-dark-900/90 border border-slate-800/80">
+                                <div class="flex items-center justify-between text-slate-400 text-sm mb-2">
+                                    <span>Precisión IA</span>
+                                    <i class="fa-solid fa-wand-magic-sparkles text-purple-400"></i>
+                                </div>
+                                <div class="text-3xl font-bold text-white">99.94%</div>
+                                <div class="mt-2 text-xs text-cyan-400 flex items-center gap-1">
+                                    <i class="fa-solid fa-shield-check"></i> Auditoría en tiempo real
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SECCIÓN DE CARACTERÍSTICAS / BENEFICIOS
+    =========================================== -->
+    <section id="caracteristicas" class="py-20 lg:py-28 relative border-t border-slate-800/60 bg-dark-900/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal opacity-0 translate-y-6 transition-all duration-700">
+                <span class="text-cyan-400 font-semibold text-sm uppercase tracking-wider">Potencia sin límites</span>
+                <h2 class="mt-2 text-3xl sm:text-4xl font-bold text-white">Diseñado para equipos de alto rendimiento</h2>
+                <p class="mt-4 text-slate-400 text-base sm:text-lg">
+                    Cada herramienta está pensada para reducir la fricción operativa y maximizar la velocidad de ejecución de tu empresa.
+                </p>
+            </div>
+
+            <!-- Grid de Tarjetas Interactivas -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                <!-- Tarjeta 1 -->
+                <div class="reveal opacity-0 translate-y-6 transition-all duration-700 group p-8 rounded-3xl bg-dark-900 border border-slate-800 hover:border-indigo-500/60 hover:bg-slate-900/90 hover:-translate-y-1.5 shadow-lg hover:shadow-indigo-500/10">
+                    <div class="w-14 h-14 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 text-2xl mb-6 group-hover:scale-110 group-hover:bg-indigo-600 group-hover:text-white transition-all">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Agentes Autónomos</h3>
+                    <p class="text-slate-400 leading-relaxed text-sm sm:text-base">
+                        Configura asistentes inteligentes capaces de clasificar tickets, redactar informes y actualizar tu CRM automáticamente las 24 horas.
+                    </p>
+                </div>
+
+                <!-- Tarjeta 2 -->
+                <div class="reveal opacity-0 translate-y-6 transition-all duration-700 delay-100 group p-8 rounded-3xl bg-dark-900 border border-slate-800 hover:border-cyan-500/60 hover:bg-slate-900/90 hover:-translate-y-1.5 shadow-lg hover:shadow-cyan-500/10">
+                    <div class="w-14 h-14 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 text-2xl mb-6 group-hover:scale-110 group-hover:bg-cyan-500 group-hover:text-dark-950 transition-all">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Analítica Predictiva</h3>
+                    <p class="text-slate-400 leading-relaxed text-sm sm:text-base">
+                        Anticípate a las tendencias del mercado con modelos de aprendizaje automático entrenados con tus métricas históricas.
+                    </p>
+                </div>
+
+                <!-- Tarjeta 3 -->
+                <div class="reveal opacity-0 translate-y-6 transition-all duration-700 delay-200 group p-8 rounded-3xl bg-dark-900 border border-slate-800 hover:border-purple-500/60 hover:bg-slate-900/90 hover:-translate-y-1.5 shadow-lg hover:shadow-purple-500/10">
+                    <div class="w-14 h-14 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 text-2xl mb-6 group-hover:scale-110 group-hover:bg-purple-600 group-hover:text-white transition-all">
+                        <i class="fa-solid fa-plug"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">+250 Integraciones</h3>
+                    <p class="text-slate-400 leading-relaxed text-sm sm:text-base">
+                        Conecta Slack, Notion, HubSpot, Salesforce, Google Workspace y tus bases de datos SQL con un solo clic y sin código.
+                    </p>
+                </div>
+
+                <!-- Tarjeta 4 -->
+                <div class="reveal opacity-0 translate-y-6 transition-all duration-700 group p-8 rounded-3xl bg-dark-900 border border-slate-800 hover:border-emerald-500/60 hover:bg-slate-900/90 hover:-translate-y-1.5 shadow-lg hover:shadow-emerald-500/10">
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 text-2xl mb-6 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-dark-950 transition-all">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Seguridad Bancaria</h3>
+                    <p class="text-slate-400 leading-relaxed text-sm sm:text-base">
+                        Cifrado de extremo a extremo AES-256, cumplimiento SOC2 Tipo II y control granular de permisos basado en roles.
+                    </p>
+                </div>
+
+                <!-- Tarjeta 5 -->
+                <div class="reveal opacity-0 translate-y-6 transition-all duration-700 delay-100 group p-8 rounded-3xl bg-dark-900 border border-slate-800 hover:border-amber-500/60 hover:bg-slate-900/90 hover:-translate-y-1.5 shadow-lg hover:shadow-amber-500/10">
+                    <div class="w-14 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-2xl mb-6 group-hover:scale-110 group-hover:bg-amber-500 group-hover:text-dark-950 transition-all">
+                        <i class="fa-solid fa-bolt-lightning"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Latencia Sub-milisegundo</h3>
+                    <p class="text-slate-400 leading-relaxed text-sm sm:text-base">
+                        Infraestructura distribuida globalmente en la nube para garantizar respuestas instantáneas sin cuellos de botella.
+                    </p>
+                </div>
+
+                <!-- Tarjeta 6 -->
+                <div class="reveal opacity-0 translate-y-6 transition-all duration-700 delay-200 group p-8 rounded-3xl bg-dark-900 border border-slate-800 hover:border-rose-500/60 hover:bg-slate-900/90 hover:-translate-y-1.5 shadow-lg hover:shadow-rose-500/10">
+                    <div class="w-14 h-14 rounded-2xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-400 text-2xl mb-6 group-hover:scale-110 group-hover:bg-rose-500 group-hover:text-white transition-all">
+                        <i class="fa-solid fa-users-gear"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Colaboración en Vivo</h3>
+                    <p class="text-slate-400 leading-relaxed text-sm sm:text-base">
+                        Edita flujos de trabajo junto a tu equipo en tiempo real con comentarios contextuales e historial de versiones ilimitado.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SECCIÓN DE TESTIMONIOS / PRUEBA SOCIAL
+    =========================================== -->
+    <section id="testimonios" class="py-20 lg:py-28 relative border-t border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Logos de empresas clientes -->
+            <div class="reveal opacity-0 translate-y-6 transition-all duration-700 text-center mb-20">
+                <p class="text-xs sm:text-sm font-semibold uppercase tracking-widest text-slate-500 mb-8">
+                    Más de 4,500 empresas innovadoras confían en nosotros
+                </p>
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-8 items-center justify-items-center opacity-70">
+                    <div class="flex items-center gap-2 text-lg font-bold text-slate-300"><i class="fa-solid fa-layer-group text-indigo-400"></i> VORTEX</div>
+                    <div class="flex items-center gap-2 text-lg font-bold text-slate-300"><i class="fa-solid fa-cube text-cyan-400"></i> KINETIC</div>
+                    <div class="flex items-center gap-2 text-lg font-bold text-slate-300"><i class="fa-solid fa-atom text-purple-400"></i> AETHER</div>
+                    <div class="flex items-center gap-2 text-lg font-bold text-slate-300"><i class="fa-solid fa-compass text-emerald-400"></i> STRATOS</div>
+                    <div class="col-span-2 md:col-span-1 flex items-center gap-2 text-lg font-bold text-slate-300"><i class="fa-solid fa-fire text-amber-400"></i> LUMINA</div>
+                </div>
+            </div>
+
+            <!-- Título Testimonios -->
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal opacity-0 translate-y-6 transition-all duration-700">
+                <span class="text-indigo-400 font-semibold text-sm uppercase tracking-wider">Historias de éxito</span>
+                <h2 class="mt-2 text-3xl sm:text-4xl font-bold text-white">Lo que dicen nuestros líderes</h2>
+            </div>
+
+            <!-- Tarjetas de Testimonios -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonio 1 -->
+                <div class="reveal opacity-0 translate-y-6 transition-all duration-700 p-8 rounded-3xl bg-dark-900/90 border border-slate-800 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-400 text-sm gap-1 mb-5">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-300 italic leading-relaxed mb-6">
+                            "Redujimos en un 70% el tiempo dedicado a la conciliación de datos entre ventas y soporte. NexusAI se pagó solo en la primera semana."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4 pt-4 border-t border-slate-800/80">
+                        <img src="https://placehold.co/100x100/1e293b/38bdf8?text=CM" onerror="this.src='https://placehold.co/100x100/1e293b/ffffff?text=User'" alt="Camila Mendoza" class="w-12 h-12 rounded-full object-cover border border-slate-700">
+                        <div>
+                            <h4 class="text-white font-semibold text-sm">Camila Mendoza</h4>
+                            <p class="text-slate-400 text-xs">VP de Operaciones en Vortex</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonio 2 -->
+                <div class="reveal opacity-0 translate-y-6 transition-all duration-700 delay-100 p-8 rounded-3xl bg-dark-900/90 border border-slate-800 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-400 text-sm gap-1 mb-5">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-300 italic leading-relaxed mb-6">
+                            "La curva de aprendizaje es prácticamente nula. Nuestro equipo de marketing creó 15 flujos automatizados en una sola tarde sin pedir ayuda a ingeniería."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4 pt-4 border-t border-slate-800/80">
+                        <img src="https://placehold.co/100x100/1e293b/818cf8?text=DR" onerror="this.src='https://placehold.co/100x100/1e293b/ffffff?text=User'" alt="Diego Rojas" class="w-12 h-12 rounded-full object-cover border border-slate-700">
+                        <div>
+                            <h4 class="text-white font-semibold text-sm">Diego Rojas</h4>
+                            <p class="text-slate-400 text-xs">Director de Growth en Kinetic</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonio 3 -->
+                <div class="reveal opacity-0 translate-y-6 transition-all duration-700 delay-200 p-8 rounded-3xl bg-dark-900/90 border border-slate-800 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-400 text-sm gap-1 mb-5">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-300 italic leading-relaxed mb-6">
+                            "El soporte técnico y la robustez de la API son excepcionales. Escalamos de 10 mil a 2 millones de ejecuciones diarias sin un solo fallo."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4 pt-4 border-t border-slate-800/80">
+                        <img src="https://placehold.co/100x100/1e293b/34d399?text=SV" onerror="this.src='https://placehold.co/100x100/1e293b/ffffff?text=User'" alt="Sofía Valdés" class="w-12 h-12 rounded-full object-cover border border-slate-700">
+                        <div>
+                            <h4 class="text-white font-semibold text-sm">Sofía Valdés</h4>
+                            <p class="text-slate-400 text-xs">CTO en Aether Labs</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SECCIÓN DE PRECIOS CON INTERRUPTOR MENSUAL/ANUAL
+    =========================================== -->
+    <section id="precios" class="py-20 lg:py-28 relative border-t border-slate-800/60 bg-dark-900/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12 reveal opacity-0 translate-y-6 transition-all duration-700">
+                <span class="text-cyan-400 font-semibold text-sm uppercase tracking-wider">Planes flexibles</span>
+                <h2 class="mt-2 text-3xl sm:text-4xl font-bold text-white">Inversión transparente que crece contigo</h2>
+                <p class="mt-4 text-slate-400 text-base sm:text-lg">
+                    Comienza gratis y actualiza cuando necesites mayor capacidad. Cancela en cualquier momento.
+                </p>
+
+                <!-- Interruptor Mensual / Anual -->
+                <div class="mt-8 inline-flex items-center gap-4 p-2 rounded-2xl bg-dark-950 border border-slate-800">
+                    <span id="label-monthly" class="text-sm font-semibold text-white px-2 transition-colors">Mensual</span>
+                    <button id="billing-toggle" type="button" role="switch" aria-checked="true" aria-label="Cambiar facturación mensual o anual" class="relative inline-flex h-8 w-14 items-center rounded-full bg-indigo-600 transition-colors focus:outline-none p-1">
+                        <span id="toggle-circle" class="inline-block h-6 w-6 transform rounded-full bg-white shadow-md transition-transform translate-x-6"></span>
+                    </button>
+                    <span id="label-yearly" class="text-sm font-semibold text-cyan-400 px-2 flex items-center gap-2 transition-colors">
+                        Anual
+                        <span class="text-xs bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 px-2 py-0.5 rounded-full">-20%</span>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Tarjetas de Precios -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch max-w-6xl mx-auto">
+                <!-- Plan Starter -->
+                <div class="reveal opacity-0 translate-y-6 transition-all duration-700 p-8 rounded-3xl bg-dark-900 border border-slate-800 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold text-white">Starter</h3>
+                        <p class="text-slate-400 text-sm mt-2">Ideal para freelancers y proyectos iniciales.</p>
+                        <div class="my-6 flex items-baseline gap-1">
+                            <span class="text-4xl sm:text-5xl font-extrabold text-white price-amount" data-monthly="19" data-yearly="15">$15</span>
+                            <span class="text-slate-400 text-sm">/mes</span>
+                        </div>
+                        <ul class="space-y-4 text-sm text-slate-300 mb-8">
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-cyan-400"></i> Hasta 5 flujos activos</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-cyan-400"></i> 10,000 ejecuciones al mes</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-cyan-400"></i> Integraciones estándar</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-cyan-400"></i> Soporte por correo 24/7</li>
+                        </ul>
+                    </div>
+                    <a href="#contacto" class="select-plan-btn w-full py-3.5 px-6 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold text-center text-sm transition-colors" data-plan="Starter">
+                        Elegir Starter
+                    </a>
+                </div>
+
+                <!-- Plan Pro (Destacado) -->
+                <div class="reveal opacity-0 translate-y-6 transition-all duration-700 delay-100 relative p-8 rounded-3xl bg-gradient-to-b from-slate-900 to-dark-900 border-2 border-indigo-500 shadow-2xl shadow-indigo-500/15 flex flex-col justify-between">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-indigo-600 to-cyan-500 text-white text-xs font-bold uppercase tracking-wider px-4 py-1 rounded-full shadow-lg">
+                        Más Popular
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">Profesional</h3>
+                        <p class="text-slate-400 text-sm mt-2">Para equipos en crecimiento que buscan escalar.</p>
+                        <div class="my-6 flex items-baseline gap-1">
+                            <span class="text-4xl sm:text-5xl font-extrabold text-white price-amount" data-monthly="49" data-yearly="39">$39</span>
+                            <span class="text-slate-400 text-sm">/mes</span>
+                        </div>
+                        <ul class="space-y-4 text-sm text-slate-200 mb-8">
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-cyan-400"></i> Flujos activos ilimitados</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-cyan-400"></i> 100,000 ejecuciones al mes</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-cyan-400"></i> Agentes IA avanzados incluidos</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-cyan-400"></i> Analítica predictiva en tiempo real</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-cyan-400"></i> Soporte prioritario por chat</li>
+                        </ul>
+                    </div>
+                    <a href="#contacto" class="select-plan-btn w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-indigo-600 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white font-semibold text-center text-sm shadow-lg shadow-indigo-500/25 transition-all" data-plan="Profesional">
+                        Probar 14 Días Gratis
+                    </a>
+                </div>
+
+                <!-- Plan Enterprise -->
+                <div class="reveal opacity-0 translate-y-6 transition-all duration-700 delay-200 p-8 rounded-3xl bg-dark-900 border border-slate-800 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold text-white">Enterprise</h3>
+                        <p class="text-slate-400 text-sm mt-2">Control total y seguridad dedicada para grandes organizaciones.</p>
+                        <div class="my-6 flex items-baseline gap-1">
+                            <span class="text-4xl sm:text-5xl font-extrabold text-white price-amount" data-monthly="129" data-yearly="99">$99</span>
+                            <span class="text-slate-400 text-sm">/mes</span>
+                        </div>
+                        <ul class="space-y-4 text-sm text-slate-300 mb-8">
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-cyan-400"></i> Ejecuciones ilimitadas</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-cyan-400"></i> Modelos IA personalizados</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-cyan-400"></i> SSO, SAML y auditoría SOC2</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-cyan-400"></i> Gerente de cuenta dedicado</li>
+                        </ul>
+                    </div>
+                    <a href="#contacto" class="select-plan-btn w-full py-3.5 px-6 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold text-center text-sm transition-colors" data-plan="Enterprise">
+                        Contactar Ventas
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SECCIÓN DE CONTACTO / SUSCRIPCIÓN CON VALIDACIÓN
+    =========================================== -->
+    <section id="contacto" class="py-20 lg:py-28 relative border-t border-slate-800/60">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="reveal opacity-0 translate-y-6 transition-all duration-700 rounded-3xl bg-gradient-to-br from-dark-900 via-slate-900 to-dark-900 border border-slate-800 p-8 sm:p-12 shadow-2xl relative overflow-hidden">
+                <!-- Decoración luminosa -->
+                <div class="absolute -top-24 -right-24 w-64 h-64 bg-indigo-600/20 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-cyan-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="relative z-10 text-center max-w-xl mx-auto mb-10">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-white">¿Listo para transformar tu flujo de trabajo?</h2>
+                    <p class="mt-3 text-slate-400 text-sm sm:text-base">
+                        Déjanos tus datos para activar tu acceso anticipado o recibir una demostración personalizada con nuestro equipo.
+                    </p>
+                </div>
+
+                <!-- Mensaje de estado (Éxito / Error) -->
+                <div id="form-feedback" class="hidden relative z-10 max-w-xl mx-auto mb-6 p-4 rounded-2xl border text-sm font-medium flex items-center gap-3">
+                    <i id="feedback-icon" class="fa-solid text-lg"></i>
+                    <span id="feedback-text"></span>
+                </div>
+
+                <!-- Formulario Funcional -->
+                <form id="contact-form" novalidate class="relative z-10 max-w-xl mx-auto space-y-5">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <!-- Nombre -->
+                        <div>
+                            <label for="full-name" class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Nombre completo *</label>
+                            <input type="text" id="full-name" name="full-name" placeholder="Ej. Laura Gómez" class="w-full px-4 py-3.5 rounded-xl bg-dark-950/90 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors">
+                            <p id="error-name" class="hidden text-rose-400 text-xs mt-1.5"><i class="fa-solid fa-circle-exclamation mr-1"></i>Por favor ingresa tu nombre (mínimo 3 caracteres).</p>
+                        </div>
+
+                        <!-- Correo Electrónico -->
+                        <div>
+                            <label for="email" class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Correo corporativo *</label>
+                            <input type="email" id="email" name="email" placeholder="laura@empresa.com" class="w-full px-4 py-3.5 rounded-xl bg-dark-950/90 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors">
+                            <p id="error-email" class="hidden text-rose-400 text-xs mt-1.5"><i class="fa-solid fa-circle-exclamation mr-1"></i>Ingresa un correo electrónico válido.</p>
+                        </div>
+                    </div>
+
+                    <!-- Plan de interés -->
+                    <div>
+                        <label for="plan-select" class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Plan de interés</label>
+                        <select id="plan-select" name="plan-select" class="w-full px-4 py-3.5 rounded-xl bg-dark-950/90 border border-slate-700 text-white focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors">
+                            <option value="Starter">Plan Starter ($15/mes)</option>
+                            <option value="Profesional" selected>Plan Profesional ($39/mes - Prueba 14 días)</option>
+                            <option value="Enterprise">Plan Enterprise ($99/mes)</option>
+                        </select>
+                    </div>
+
+                    <!-- Mensaje opcional -->
+                    <div>
+                        <label for="message" class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">¿Qué procesos deseas automatizar? (Opcional)</label>
+                        <textarea id="message" name="message" rows="3" placeholder="Cuéntanos brevemente sobre tu equipo..." class="w-full px-4 py-3 rounded-xl bg-dark-950/90 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors"></textarea>
+                    </div>
+
+                    <!-- Checkbox términos -->
+                    <div class="flex items-start gap-3">
+                        <input type="checkbox" id="terms" class="mt-1 w-4 h-4 rounded border-slate-700 bg-dark-950 text-indigo-600 focus:ring-indigo-500">
+                        <label for="terms" class="text-xs text-slate-400 leading-relaxed">
+                            Acepto recibir comunicaciones sobre NexusAI y estoy de acuerdo con la <a href="#" class="text-cyan-400 hover:underline">Política de Privacidad</a>.
+                        </label>
+                    </div>
+                    <p id="error-terms" class="hidden text-rose-400 text-xs"><i class="fa-solid fa-circle-exclamation mr-1"></i>Debes aceptar la política de privacidad para continuar.</p>
+
+                    <button type="submit" id="submit-btn" class="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-indigo-600 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white font-bold text-base shadow-lg shadow-indigo-500/25 transition-all hover:scale-[1.01] flex items-center justify-center gap-2">
+                        <span>Solicitar Acceso Inmediato</span>
+                        <i class="fa-solid fa-paper-plane text-sm"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         PIE DE PÁGINA COMPLETO (FOOTER)
+    =========================================== -->
+    <footer class="bg-dark-950 border-t border-slate-800/80 pt-16 pb-12 text-sm text-slate-400">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-800/80">
+                <!-- Columna Marca -->
+                <div class="lg:col-span-2 space-y-4">
+                    <a href="#" class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-cyan-400 flex items-center justify-center">
+                            <i class="fa-solid fa-bolt text-white text-base"></i>
+                        </div>
+                        <span class="text-xl font-bold text-white">Nexus<span class="text-cyan-400">AI</span></span>
+                    </a>
+                    <p class="text-slate-400 max-w-sm leading-relaxed">
+                        Potenciando la próxima generación de empresas digitales mediante automatización inteligente, analítica predictiva y flujos sin fricción.
+                    </p>
+                    <div class="flex items-center gap-3 pt-2">
+                        <a href="#" aria-label="Twitter" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-cyan-400 transition-colors">
+                            <i class="fa-brands fa-x-twitter"></i>
+                        </a>
+                        <a href="#" aria-label="LinkedIn" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-cyan-400 transition-colors">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" aria-label="GitHub" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-cyan-400 transition-colors">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                        <a href="#" aria-label="YouTube" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-cyan-400 transition-colors">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Enlaces Producto -->
+                <div>
+                    <h4 class="text-white font-semibold uppercase tracking-wider text-xs mb-4">Producto</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#caracteristicas" class="hover:text-cyan-400 transition-colors">Características</a></li>
+                        <li><a href="#precios" class="hover:text-cyan-400 transition-colors">Planes y Precios</a></li>
+                        <li><a href="#caracteristicas" class="hover:text-cyan-400 transition-colors">Integraciones</a></li>
+                        <li><a href="#testimonios" class="hover:text-cyan-400 transition-colors">Casos de Éxito</a></li>
+                    </ul>
+                </div>
+
+                <!-- Enlaces Recursos -->
+                <div>
+                    <h4 class="text-white font-semibold uppercase tracking-wider text-xs mb-4">Recursos</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="hover:text-cyan-400 transition-colors">Documentación API</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition-colors">Guías y Tutoriales</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition-colors">Blog de Ingeniería</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition-colors">Estado del Sistema</a></li>
+                    </ul>
+                </div>
+
+                <!-- Enlaces Legal -->
+                <div>
+                    <h4 class="text-white font-semibold uppercase tracking-wider text-xs mb-4">Compañía</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="hover:text-cyan-400 transition-colors">Sobre Nosotros</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition-colors">Carreras</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition-colors">Privacidad</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition-colors">Términos de Uso</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+                <p>&copy; 2026 NexusAI Technologies Inc. Todos los derechos reservados.</p>
+                <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                    <span>Todos los sistemas operativos al 100%</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================
+         JAVASCRIPT INTERACTIVO
+    =========================================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. MENÚ HAMBURGUESA MÓVIL
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            function toggleMobileMenu() {
+                const isHidden = mobileMenu.classList.contains('hidden');
+                if (isHidden) {
+                    mobileMenu.classList.remove('hidden');
+                    menuIcon.classList.remove('fa-bars');
+                    menuIcon.classList.add('fa-xmark');
+                } else {
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.classList.remove('fa-xmark');
+                    menuIcon.classList.add('fa-bars');
+                }
+            }
+
+            mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+
+            // Cerrar menú al hacer clic en un enlace
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.classList.remove('fa-xmark');
+                    menuIcon.classList.add('fa-bars');
+                });
+            });
+
+            // 2. INTERRUPTOR DE PRECIOS MENSUAL / ANUAL
+            const billingToggle = document.getElementById('billing-toggle');
+            const toggleCircle = document.getElementById('toggle-circle');
+            const labelMonthly = document.getElementById('label-monthly');
+            const labelYearly = document.getElementById('label-yearly');
+            const priceAmounts = document.querySelectorAll('.price-amount');
+            let isYearly = true; // Inicia en anual por defecto (-20%)
+
+            billingToggle.addEventListener('click', () => {
+                isYearly = !isYearly;
+                billingToggle.setAttribute('aria-checked', isYearly);
+
+                if (isYearly) {
+                    toggleCircle.classList.add('translate-x-6');
+                    billingToggle.classList.replace('bg-slate-700', 'bg-indigo-600');
+                    labelYearly.classList.replace('text-slate-400', 'text-cyan-400');
+                    labelMonthly.classList.replace('text-white', 'text-slate-400');
+                } else {
+                    toggleCircle.classList.remove('translate-x-6');
+                    billingToggle.classList.replace('bg-indigo-600', 'bg-slate-700');
+                    labelMonthly.classList.replace('text-slate-400', 'text-white');
+                    labelYearly.classList.replace('text-cyan-400', 'text-slate-400');
+                }
+
+                // Animar el cambio numérico de precios
+                priceAmounts.forEach(el => {
+                    el.style.opacity = '0';
+                    setTimeout(() => {
+                        const newPrice = isYearly ? el.dataset.yearly : el.dataset.monthly;
+                        el.textContent = `$${newPrice}`;
+                        el.style.opacity = '1';
+                    }, 150);
+                });
+            });
+
+            // Preseleccionar plan en el formulario al hacer clic en una tarjeta de precio
+            const selectPlanBtns = document.querySelectorAll('.select-plan-btn');
+            const planSelectInput = document.getElementById('plan-select');
+            selectPlanBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const chosenPlan = btn.getAttribute('data-plan');
+                    if (planSelectInput && chosenPlan) {
+                        planSelectInput.value = chosenPlan;
+                    }
+                });
+            });
+
+            // 3. ANIMACIONES SUAVES AL HACER SCROLL (IntersectionObserver)
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.remove('opacity-0', 'translate-y-6', 'translate-y-8');
+                        entry.target.classList.add('opacity-100', 'translate-y-0');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.12,
+                rootMargin: '0px 0px -40px 0px'
+            });
+
+            revealElements.forEach(el => revealObserver.observe(el));
+
+            // 4. VALIDACIÓN Y ENVÍO DEL FORMULARIO DE CONTACTO
+            const contactForm = document.getElementById('contact-form');
+            const nameInput = document.getElementById('full-name');
+            const emailInput = document.getElementById('email');
+            const termsCheckbox = document.getElementById('terms');
+
+            const errorName = document.getElementById('error-name');
+            const errorEmail = document.getElementById('error-email');
+            const errorTerms = document.getElementById('error-terms');
+
+            const formFeedback = document.getElementById('form-feedback');
+            const feedbackIcon = document.getElementById('feedback-icon');
+            const feedbackText = document.getElementById('feedback-text');
+            const submitBtn = document.getElementById('submit-btn');
+
+            function showFeedback(type, message) {
+                formFeedback.classList.remove('hidden', 'bg-emerald-500/10', 'border-emerald-500/30', 'text-emerald-300', 'bg-rose-500/10', 'border-rose-500/30', 'text-rose-300');
+                feedbackIcon.classList.remove('fa-circle-check', 'fa-triangle-exclamation');
+
+                if (type === 'success') {
+                    formFeedback.classList.add('bg-emerald-500/10', 'border-emerald-500/30', 'text-emerald-300');
+                    feedbackIcon.classList.add('fa-circle-check');
+                } else {
+                    formFeedback.classList.add('bg-rose-500/10', 'border-rose-500/30', 'text-rose-300');
+                    feedbackIcon.classList.add('fa-triangle-exclamation');
+                }
+                feedbackText.textContent = message;
+            }
+
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                let isValid = true;
+
+                // Resetear errores previos
+                errorName.classList.add('hidden');
+                errorEmail.classList.add('hidden');
+                errorTerms.classList.add('hidden');
+                nameInput.classList.remove('border-rose-500');
+                emailInput.classList.remove('border-rose-500');
+
+                // Validar nombre
+                if (nameInput.value.trim().length < 3) {
+                    errorName.classList.remove('hidden');
+                    nameInput.classList.add('border-rose-500');
+                    isValid = false;
+                }
+
+                // Validar correo electrónico con expresión regular
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(emailInput.value.trim())) {
+                    errorEmail.classList.remove('hidden');
+                    emailInput.classList.add('border-rose-500');
+                    isValid = false;
+                }
+
+                // Validar checkbox de términos
+                if (!termsCheckbox.checked) {
+                    errorTerms.classList.remove('hidden');
+                    isValid = false;
+                }
+
+                if (!isValid) {
+                    showFeedback('error', 'Por favor corrige los campos marcados antes de continuar.');
+                    return;
+                }
+
+                // Simular envío exitoso
+                const originalBtnHtml = submitBtn.innerHTML;
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i><span>Procesando solicitud...</span>';
+
+                setTimeout(() => {
+                    const userName = nameInput.value.trim().split(' ')[0];
+                    const selectedPlan = planSelectInput.value;
+                    showFeedback('success', `¡Gracias, ${userName}! Hemos enviado los detalles de acceso para el plan ${selectedPlan} a ${emailInput.value.trim()}.`);
+                    contactForm.reset();
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnHtml;
+                }, 900);
+            });
+        });
+    </script>
+</body>
+</html>
